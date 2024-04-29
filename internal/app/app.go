@@ -72,18 +72,5 @@ func (a *App) initGinServer(ctx context.Context) error {
 	a.ginServer = engine
 	log.Println(engine)
 	a.deviceServiceProvider.DeviceImpl(engine)
-
-	//dev := model.CreateUserDTO{Name: "test", Company: "test", Port: 1}
-	//_, err := a.deviceServiceProvider.deviceService.Create(ctx, &dev)
-	//log.Println(err)
-	//if err != nil {
-	//	return err
-	//}
-	//list, err := a.deviceServiceProvider.deviceService.List(ctx)
-	//if err != nil {
-	//	return err
-	//}
-	//log.Println(list)
-
 	return nil
 }

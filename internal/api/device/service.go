@@ -18,7 +18,7 @@ func NewImplementation(engine *gin.Engine, deviceService service.DeviceService) 
 	device.GET("/:id", impl.Get)
 	device.POST("/", impl.Create)
 	device.PUT("/:id", impl.Update)
-	device.DELETE("/", impl.Delete)
+	device.DELETE("/:id", impl.Delete)
 	impl.engine = engine
 
 	return impl
