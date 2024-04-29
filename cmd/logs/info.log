@@ -1,0 +1,8 @@
+time="2024-04-26T18:11:25+05:00" level=info msg="Logger initialized" func="main.main()" file="main.go:12"
+time="2024-04-26T18:12:28+05:00" level=info msg="Logger initialized" func="main.main()" file="main.go:12"
+time="2024-04-26T18:13:11+05:00" level=info msg="Logger initialized" func="main.main()" file="main.go:12"
+time="2024-04-26T18:13:41+05:00" level=info msg="Logger initialized" func="main.main()" file="main.go:12"
+time="2024-04-26T18:14:41+05:00" level=info msg="Logger initialized" func="main.main()" file="main.go:12"
+time="2024-04-29T09:33:36+05:00" level=info msg="Logger initialized" func="main.main()" file="main.go:12"
+time="2024-04-29T09:34:23+05:00" level=info msg="Logger initialized" func="main.main()" file="main.go:12"
+time="2024-04-29T09:35:22+05:00" level=info msg="Logger initialized" func="main.main()" file="main.go:12"
