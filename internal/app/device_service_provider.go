@@ -14,11 +14,15 @@ type deviceServiceProvider struct {
 	deviceRepository repository.DeviceRepository
 	deviceService    service.DeviceService
 	deviceImpl       *device.Implementation
-	db               *pgxpool.Conn
+	db               *pgxpool.Pool
 }
 
-func newDeviceServiceProvider() *deviceServiceProvider {
-	return &deviceServiceProvider{}
+func newDeviceServiceProvider(db *pgxpool.Pool) *deviceServiceProvider {
+	var service deviceServiceProvider
+
+	service.db = db
+
+	return &service
 }
 
 func (s *deviceServiceProvider) DeviceRepository() repository.DeviceRepository {

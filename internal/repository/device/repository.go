@@ -11,10 +11,10 @@ import (
 var _ def.DeviceRepository = (*repository)(nil)
 
 type repository struct {
-	Conn *pgxpool.Conn
+	Conn *pgxpool.Pool
 }
 
-func NewRepository(conn *pgxpool.Conn) def.DeviceRepository {
+func NewRepository(conn *pgxpool.Pool) def.DeviceRepository {
 	return &repository{Conn: conn}
 }
 

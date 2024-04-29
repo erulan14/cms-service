@@ -15,10 +15,10 @@ func NewImplementation(engine *gin.Engine, deviceService service.DeviceService) 
 
 	device := engine.Group("/device")
 	device.GET("/", impl.List)
-	device.GET("/:id", impl.List)
-	device.POST("/", impl.List)
-	device.PUT("/:id", impl.List)
-	device.DELETE("/", impl.List)
+	device.GET("/:id", impl.Get)
+	device.POST("/", impl.Create)
+	device.PUT("/:id", impl.Update)
+	device.DELETE("/", impl.Delete)
 	impl.engine = engine
 
 	return impl
