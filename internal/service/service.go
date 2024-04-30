@@ -20,3 +20,11 @@ type CommandService interface {
 	Delete(ctx context.Context, uuid string) error
 	Update(ctx context.Context, uuid string, model *model.UpdateCommandDTO) error
 }
+
+type GeozoneService interface {
+	Create(ctx context.Context, model *model.CreateGeozoneDTO) (string, error)
+	Get(ctx context.Context, uuid string) (*model.Geozone, error)
+	List(ctx context.Context) ([]model.Geozone, error)
+	Delete(ctx context.Context, uuid string) error
+	Update(ctx context.Context, uuid string, model *model.UpdateGeozoneDTO) error
+}
