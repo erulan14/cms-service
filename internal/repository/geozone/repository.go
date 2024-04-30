@@ -1,1 +1,3 @@
 package geozone
+
+func test() {}
