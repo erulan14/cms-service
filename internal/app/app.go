@@ -11,6 +11,7 @@ import (
 type App struct {
 	deviceServiceProvider  *deviceServiceProvider
 	commandServiceProvider *commandServiceProvider
+	geozoneServiceProvider *geozoneServiceProvider
 	ginServer              *gin.Engine
 	db                     *pgxpool.Pool
 }
@@ -66,6 +67,7 @@ func (a *App) initDb(ctx context.Context) error {
 func (a *App) initDeviceServiceProvider(ctx context.Context) error {
 	a.deviceServiceProvider = newDeviceServiceProvider(a.db)
 	a.commandServiceProvider = newCommandServiceProvider(a.db)
+	a.geozoneServiceProvider = newGeozoneServiceProvider(a.db)
 	return nil
 }
 
@@ -75,5 +77,6 @@ func (a *App) initGinServer(ctx context.Context) error {
 	log.Println(engine)
 	a.deviceServiceProvider.DeviceImpl(engine)
 	a.commandServiceProvider.CommandImpl(engine)
+	a.geozoneServiceProvider.GeozoneImpl(engine)
 	return nil
 }

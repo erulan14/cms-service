@@ -20,3 +20,11 @@ type CommandRepository interface {
 	Update(ctx context.Context, deviceUUID string, model *model.UpdateCommandDTO) error
 	Delete(ctx context.Context, deviceUUID string) error
 }
+
+type GeozoneRepository interface {
+	Create(ctx context.Context, deviceUUID string, model *model.CreateGeozoneDTO) error
+	Get(ctx context.Context, deviceUUID string) (*model.Geozone, error)
+	List(ctx context.Context) ([]model.Geozone, error)
+	Update(ctx context.Context, deviceUUID string, model *model.UpdateGeozoneDTO) error
+	Delete(ctx context.Context, deviceUUID string) error
+}
