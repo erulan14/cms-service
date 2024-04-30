@@ -7,14 +7,14 @@ import (
 	"log"
 )
 
-func (s *service) Create(ctx context.Context, model *model.CreateDeviceDTO) (string, error) {
+func (s *service) Create(ctx context.Context, model *model.CreateCommandDTO) (string, error) {
 	deviceUUID, err := uuid.NewUUID()
 	if err != nil {
 		log.Printf("Error creating device uuid %v", err)
 		return "", err
 	}
 
-	err = s.deviceRepository.Create(ctx, deviceUUID.String(), model)
+	err = s.commandRepository.Create(ctx, deviceUUID.String(), model)
 	if err != nil {
 		log.Printf("Error creating device %v", err)
 		return "", err

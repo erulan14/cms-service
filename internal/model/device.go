@@ -7,7 +7,7 @@ type Device struct {
 	Port    int    `json:"port"`
 }
 
-type CreateUserDTO struct {
+type CreateDeviceDTO struct {
 	Name    string `json:"name"`
 	Company string `json:"company"`
 	Port    int    `json:"port"`

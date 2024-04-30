@@ -6,14 +6,14 @@ import (
 )
 
 type Implementation struct {
-	deviceService service.DeviceService
-	engine        *gin.Engine
+	commandService service.CommandService
+	engine         *gin.Engine
 }
 
-func NewImplementation(engine *gin.Engine, deviceService service.DeviceService) *Implementation {
-	impl := &Implementation{deviceService: deviceService}
+func NewImplementation(engine *gin.Engine, commandService service.CommandService) *Implementation {
+	impl := &Implementation{commandService: commandService}
 
-	group := engine.Group("/device")
+	group := engine.Group("/command")
 	group.GET("/", impl.List)
 	group.GET("/:id", impl.Get)
 	group.POST("/", impl.Create)

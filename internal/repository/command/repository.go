@@ -1,0 +1,65 @@
+package command
+
+import (
+	"cms-service/internal/model"
+	def "cms-service/internal/repository"
+	"context"
+	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/pgxpool"
+)
+
+var _ def.CommandRepository = (*repository)(nil)
+
+type repository struct {
+	Conn *pgxpool.Pool
+}
+
+func NewRepository(conn *pgxpool.Pool) *repository {
+	return &repository{Conn: conn}
+}
+
+func (r *repository) Create(ctx context.Context, deviceUUID string, model *model.CreateCommandDTO) error {
+	_, err := r.Conn.Exec(ctx, `INSERT INTO command (uuid, name, command, unit, creator) VALUES ($1, $2, $3, $4, $5)`,
+		deviceUUID, model.Name, model.Command, model.Unit, model.Creator)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *repository) List(ctx context.Context) ([]model.Command, error) {
+	rows, _ := r.Conn.Query(ctx, `SELECT * FROM command`)
+	devices, err := pgx.CollectRows(rows, pgx.RowToStructByPos[model.Command])
+	if err != nil {
+		return nil, err
+	}
+	return devices, nil
+}
+
+func (r *repository) Get(ctx context.Context, deviceUUID string) (*model.Command, error) {
+	row, _ := r.Conn.Query(ctx, `SELECT * FROM command WHERE uuid = $1`, deviceUUID)
+	device, err := pgx.CollectOneRow(row, pgx.RowToStructByPos[model.Command])
+
+	if err != nil {
+		return nil, err
+	}
+	return &device, nil
+}
+
+func (r *repository) Update(ctx context.Context, deviceUUID string, model *model.UpdateCommandDTO) error {
+	_, err := r.Conn.Exec(ctx, `UPDATE command SET name = $2, command = $3, unit = $4, creator = $=5 WHERE uuid = $1`,
+		deviceUUID, model.Name, model.Command, model.Unit, model.Creator)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (r *repository) Delete(ctx context.Context, deviceUUID string) error {
+	_, err := r.Conn.Exec(ctx, `DELETE FROM command WHERE uuid = $1`, deviceUUID)
+	if err != nil {
+		return err
+	}
+	return nil
+}

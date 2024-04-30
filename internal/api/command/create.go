@@ -7,13 +7,13 @@ import (
 )
 
 func (i *Implementation) Create(c *gin.Context) {
-	var dto model.CreateDeviceDTO
+	var dto model.CreateCommandDTO
 	if err := c.ShouldBindJSON(&dto); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	uuid, err := i.deviceService.Create(c.Request.Context(), &dto)
+	uuid, err := i.commandService.Create(c.Request.Context(), &dto)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return

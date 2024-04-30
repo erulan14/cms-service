@@ -18,7 +18,7 @@ func NewRepository(conn *pgxpool.Pool) def.DeviceRepository {
 	return &repository{Conn: conn}
 }
 
-func (r *repository) Create(ctx context.Context, deviceUUID string, model *model.CreateUserDTO) error {
+func (r *repository) Create(ctx context.Context, deviceUUID string, model *model.CreateDeviceDTO) error {
 	_, err := r.Conn.Exec(ctx, `INSERT INTO device (uuid, name, company, port) VALUES ($1, $2, $3, $4)`,
 		deviceUUID, model.Name, model.Company, model.Port)
 	if err != nil {
