@@ -10,6 +10,7 @@ func (i *Implementation) Update(c *gin.Context) {
 	uuid, _ := c.Params.Get("id")
 	if uuid == "" {
 		c.AbortWithStatus(http.StatusBadRequest)
+		return
 	}
 
 	var dto model.UpdateDeviceDTO

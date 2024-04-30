@@ -9,6 +9,7 @@ func (i *Implementation) Get(c *gin.Context) {
 	uuid, _ := c.Params.Get("id")
 	if uuid == "" {
 		c.AbortWithStatus(http.StatusBadRequest)
+		return
 	}
 
 	get, err := i.deviceService.Get(c.Request.Context(), uuid)

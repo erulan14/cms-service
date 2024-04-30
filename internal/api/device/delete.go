@@ -9,6 +9,7 @@ func (i *Implementation) Delete(c *gin.Context) {
 	uuid, _ := c.Params.Get("id")
 	if uuid == "" {
 		c.AbortWithStatus(http.StatusBadRequest)
+		return
 	}
 
 	err := i.deviceService.Delete(c.Request.Context(), uuid)
