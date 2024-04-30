@@ -1,4 +1,4 @@
-package device
+package command
 
 import (
 	"github.com/gin-gonic/gin"

@@ -9,9 +9,10 @@ import (
 )
 
 type App struct {
-	deviceServiceProvider *deviceServiceProvider
-	ginServer             *gin.Engine
-	db                    *pgxpool.Pool
+	deviceServiceProvider  *deviceServiceProvider
+	commandServiceProvider *commandServiceProvider
+	ginServer              *gin.Engine
+	db                     *pgxpool.Pool
 }
 
 func NewApp(ctx context.Context) (*App, error) {
@@ -64,6 +65,7 @@ func (a *App) initDb(ctx context.Context) error {
 
 func (a *App) initDeviceServiceProvider(ctx context.Context) error {
 	a.deviceServiceProvider = newDeviceServiceProvider(a.db)
+	a.commandServiceProvider = newCommandServiceProvider(a.db)
 	return nil
 }
 
@@ -72,5 +74,6 @@ func (a *App) initGinServer(ctx context.Context) error {
 	a.ginServer = engine
 	log.Println(engine)
 	a.deviceServiceProvider.DeviceImpl(engine)
+	a.commandServiceProvider.CommandImpl(engine)
 	return nil
 }

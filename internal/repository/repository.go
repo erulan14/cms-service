@@ -6,7 +6,7 @@ import (
 )
 
 type DeviceRepository interface {
-	Create(ctx context.Context, deviceUUID string, model *model.CreateUserDTO) error
+	Create(ctx context.Context, deviceUUID string, model *model.CreateDeviceDTO) error
 	Get(ctx context.Context, deviceUUID string) (*model.Device, error)
 	List(ctx context.Context) ([]model.Device, error)
 	Update(ctx context.Context, deviceUUID string, model *model.UpdateDeviceDTO) error

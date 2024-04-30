@@ -6,7 +6,7 @@ import (
 )
 
 type DeviceService interface {
-	Create(ctx context.Context, model *model.CreateUserDTO) (string, error)
+	Create(ctx context.Context, model *model.CreateDeviceDTO) (string, error)
 	Get(ctx context.Context, uuid string) (*model.Device, error)
 	List(ctx context.Context) ([]model.Device, error)
 	Delete(ctx context.Context, uuid string) error
