@@ -60,7 +60,7 @@ func (r *repository) Update(ctx context.Context, geozoneUUID string, model *mode
 }
 
 func (r *repository) Delete(ctx context.Context, geozoneUUID string) error {
-	_, err := r.Conn.Exec(ctx, `DELETE FROM device WHERE uuid = $1`, geozoneUUID)
+	_, err := r.Conn.Exec(ctx, `DELETE FROM geozone WHERE uuid = $1`, geozoneUUID)
 	if err != nil {
 		return err
 	}
