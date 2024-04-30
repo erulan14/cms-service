@@ -49,8 +49,8 @@ func (r *repository) Get(ctx context.Context, geozoneUUID string) (*model.Geozon
 }
 
 func (r *repository) Update(ctx context.Context, geozoneUUID string, model *model.UpdateGeozoneDTO) error {
-	_, err := r.Conn.Exec(ctx, `UPDATE geozone SET name = $2, positions = $3, createdat = $4, updatedat = $5, type = $6, color = $7, radius = $8, width = $9, description = $10, perimeter = $11, area = $12 WHERE uuid = $1`,
-		geozoneUUID, model.Name, model, model.CreatedAt, model.UpdatedAt, model.Type, model.Color, model.Radius,
+	_, err := r.Conn.Exec(ctx, `UPDATE geozone SET name = $2, positions = $3, updatedat = $4, type = $5, color = $6, radius = $7, width = $8, description = $9, perimeter = $10, area = $11 WHERE uuid = $1`,
+		geozoneUUID, model.Name, model.Positions, model.UpdatedAt, model.Type, model.Color, model.Radius,
 		model.Width, model.Description, model.Perimeter, model.Area)
 	if err != nil {
 		return err

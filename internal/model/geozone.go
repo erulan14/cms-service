@@ -39,7 +39,6 @@ type CreateGeozoneDTO struct {
 type UpdateGeozoneDTO struct {
 	Name        string    `json:"name"`
 	Positions   []Pos     `json:"positions"`
-	CreatedAt   time.Time `json:"created_at"`
 	UpdatedAt   time.Time `json:"updated_at"`
 	Type        string    `json:"type"`
 	Color       string    `json:"color"`
