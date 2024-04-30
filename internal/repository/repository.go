@@ -20,11 +20,3 @@ type CommandRepository interface {
 	Update(ctx context.Context, deviceUUID string, model *model.UpdateCommandDTO) error
 	Delete(ctx context.Context, deviceUUID string) error
 }
-
-type UnitRepository interface {
-	Create(ctx context.Context, deviceUUID string, model *model.CreateUnitDTO) error
-	Get(ctx context.Context, deviceUUID string) (*model.Unit, error)
-	List(ctx context.Context) ([]model.Unit, error)
-	Update(ctx context.Context, deviceUUID string, model *model.UpdateUnitDTO) error
-	Delete(ctx context.Context, deviceUUID string) error
-}
