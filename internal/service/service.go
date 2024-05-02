@@ -28,3 +28,11 @@ type GeozoneService interface {
 	Delete(ctx context.Context, uuid string) error
 	Update(ctx context.Context, uuid string, model *model.UpdateGeozoneDTO) error
 }
+
+type TariffService interface {
+	Create(ctx context.Context, model *model.CreateTariffDTO) (string, error)
+	Get(ctx context.Context, uuid string) (*model.Tariff, error)
+	List(ctx context.Context) ([]model.Tariff, error)
+	Delete(ctx context.Context, uuid string) error
+	Update(ctx context.Context, uuid string, model *model.UpdateTariffDTO) error
+}
