@@ -28,3 +28,11 @@ type GeozoneRepository interface {
 	Update(ctx context.Context, deviceUUID string, model *model.UpdateGeozoneDTO) error
 	Delete(ctx context.Context, deviceUUID string) error
 }
+
+type TariffRepository interface {
+	Create(ctx context.Context, deviceUUID string, model *model.CreateTariffDTO) error
+	Get(ctx context.Context, deviceUUID string) (*model.Tariff, error)
+	List(ctx context.Context) ([]model.Tariff, error)
+	Update(ctx context.Context, deviceUUID string, model *model.UpdateTariffDTO) error
+	Delete(ctx context.Context, deviceUUID string) error
+}
