@@ -1,4 +1,4 @@
-package geozone
+package unit
 
 import (
 	"cms-service/internal/model"
@@ -18,7 +18,7 @@ func NewRepository(conn *pgxpool.Pool) def.UnitRepository {
 	return &repository{Conn: conn}
 }
 
-func (r *repository) Create(ctx context.Context, geozoneUUID string, model *model.CreateUnitDTO) error {
+func (r *repository) Create(ctx context.Context, UUID string, model *model.CreateUnitDTO) error {
 
 	return nil
 }
@@ -32,8 +32,8 @@ func (r *repository) List(ctx context.Context) ([]model.Unit, error) {
 	return geozones, nil
 }
 
-func (r *repository) Get(ctx context.Context, geozoneUUID string) (*model.Unit, error) {
-	row, _ := r.Conn.Query(ctx, `SELECT * FROM geozone WHERE uuid = $1`, geozoneUUID)
+func (r *repository) Get(ctx context.Context, UUID string) (*model.Unit, error) {
+	row, _ := r.Conn.Query(ctx, `SELECT * FROM geozone WHERE uuid = $1`, UUID)
 	geozone, err := pgx.CollectOneRow(row, pgx.RowToStructByPos[model.Unit])
 
 	if err != nil {
@@ -42,13 +42,13 @@ func (r *repository) Get(ctx context.Context, geozoneUUID string) (*model.Unit, 
 	return &geozone, nil
 }
 
-func (r *repository) Update(ctx context.Context, geozoneUUID string, model *model.UpdateUnitDTO) error {
+func (r *repository) Update(ctx context.Context, UUID string, model *model.UpdateUnitDTO) error {
 
 	return nil
 }
 
-func (r *repository) Delete(ctx context.Context, geozoneUUID string) error {
-	_, err := r.Conn.Exec(ctx, `DELETE FROM geozone WHERE uuid = $1`, geozoneUUID)
+func (r *repository) Delete(ctx context.Context, UUID string) error {
+	_, err := r.Conn.Exec(ctx, `DELETE FROM geozone WHERE uuid = $1`, UUID)
 	if err != nil {
 		return err
 	}
