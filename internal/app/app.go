@@ -12,6 +12,7 @@ type App struct {
 	deviceServiceProvider  *deviceServiceProvider
 	commandServiceProvider *commandServiceProvider
 	geozoneServiceProvider *geozoneServiceProvider
+	tariffServiceProvider  *tariffServiceProvider
 	ginServer              *gin.Engine
 	db                     *pgxpool.Pool
 }
@@ -68,6 +69,7 @@ func (a *App) initDeviceServiceProvider(ctx context.Context) error {
 	a.deviceServiceProvider = newDeviceServiceProvider(a.db)
 	a.commandServiceProvider = newCommandServiceProvider(a.db)
 	a.geozoneServiceProvider = newGeozoneServiceProvider(a.db)
+	a.tariffServiceProvider = newTariffServiceProvider(a.db)
 	return nil
 }
 
@@ -78,5 +80,6 @@ func (a *App) initGinServer(ctx context.Context) error {
 	a.deviceServiceProvider.DeviceImpl(engine)
 	a.commandServiceProvider.CommandImpl(engine)
 	a.geozoneServiceProvider.GeozoneImpl(engine)
+	a.tariffServiceProvider.TariffImpl(engine)
 	return nil
 }
